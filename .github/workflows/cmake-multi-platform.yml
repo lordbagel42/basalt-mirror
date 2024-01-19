@@ -21,7 +21,10 @@ jobs:
 
     - name: Install dependencies
       run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake libeigen3-dev
         ./scripts/install_deps.sh
+
 
     - name: Create build directory
       run: |
