@@ -11,8 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+    - name: Clone repo
+      run: |
+        git clone --recursive https://gitlab.com/VladyslavUsenko/basalt.git
 
     - name: Set up CMake
       run: |
@@ -21,17 +22,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt-get update
-        sudo apt-get install -y cmake
-        # Install Eigen3 manually
-        wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
-        tar xzf eigen-3.4.0.tar.gz
-        cd eigen-3.4.0
-        mkdir build && cd build
-        cmake .. && make && sudo make install
-        cd ../..
+        cd basalt
         ./scripts/install_deps.sh
-
 
     - name: Create build directory
       run: |
@@ -40,7 +32,7 @@ jobs:
 
     - name: Configure CMake
       run: |
-        cmake . -DCMAKE_BUILD_TYPE=RelWithDebInfo
+        cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
     - name: Build project
       run: |
