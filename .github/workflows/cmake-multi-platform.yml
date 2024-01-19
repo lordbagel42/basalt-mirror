@@ -22,15 +22,15 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-       sudo apt-get install -y cmake
-       # Install Eigen3 manually
-       wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
-       tar xzf eigen-3.4.0.tar.gz
-       cd eigen-3.4.0
-       mkdir build && cd build
-       cmake .. && make && sudo make install
-       cd ../..
-       ./scripts/install_deps.sh
+        sudo apt-get install -y cmake
+        # Install Eigen3 manually
+        wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
+        tar xzf eigen-3.4.0.tar.gz
+        cd eigen-3.4.0
+        mkdir build && cd build
+        cmake .. && make && sudo make install
+        cd ../..
+        ./scripts/install_deps.sh
 
 
     - name: Create build directory
